@@ -5,7 +5,7 @@ resources:
 patches:
   # deployment: applicationset-controller
   - patch: |-
-      - op: replace
+      - op: add
         path: /spec/replicas
         value: 0
     target:
@@ -16,7 +16,7 @@ patches:
 
   # deployment: argoc-dex-server
   - patch: |-
-      - op: replace
+      - op: add
         path: /spec/replicas
         value: 0
     target:
