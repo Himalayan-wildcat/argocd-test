@@ -28,7 +28,6 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: in-cluster
     namespace: argocd
     server: https://kubernetes.default.svc
   project: stg-argocd
