@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: argocd
+  # finalizers:
+  # - resources-finalizer.argocd.argoproj.io
+spec:
+  description: argocd
+  sourceRepos:
+  - git@github.com:Nextremer/argocd-test.git
+  destinations:
+  - namespace: argocd
+    server: "*"
+  clusterResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  namespaceResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  orphanedResources:
+    warn: true
