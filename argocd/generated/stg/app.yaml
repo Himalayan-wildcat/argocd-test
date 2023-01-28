@@ -17,7 +17,7 @@ spec:
   orphanedResources:
     warn: true
   sourceRepos:
-  - git@github.com:Nextremer/argocd-test.git
+  - https://github.com/Himalayan-wildcat/argocd-test.git
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

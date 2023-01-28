@@ -7,7 +7,7 @@ metadata:
 spec:
   description: argocd
   sourceRepos:
-  - git@github.com:Nextremer/argocd-test.git
+  - https://github.com/Himalayan-wildcat/argocd-test.git
   destinations:
   - namespace: argocd
     server: "*"
