@@ -4,6 +4,7 @@ namespace: argocd
 resources:
   - ns.yaml
   - install.yaml
+  - sealed-argocd-secret.yaml
 patches:
   - argocd-cm.yaml
   - argocd-cmd-params-cm.yaml
