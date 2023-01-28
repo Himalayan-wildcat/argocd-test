@@ -15849,6 +15849,7 @@ metadata:
   name: argocd-applicationset-controller
   namespace: argocd
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-applicationset-controller
@@ -15980,6 +15981,7 @@ metadata:
   name: argocd-dex-server
   namespace: argocd
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-dex-server
