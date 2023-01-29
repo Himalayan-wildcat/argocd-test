@@ -3,8 +3,9 @@ kind: Kustomization
 namespace: argocd
 resources:
   - ns.yaml
-  - sealed-argocd-secret.yaml
   - install.yaml
+  - sealed-argocd-secret.yaml
 patches:
+  - argocd-secret.yaml
   - argocd-cm.yaml
   - argocd-cmd-params-cm.yaml

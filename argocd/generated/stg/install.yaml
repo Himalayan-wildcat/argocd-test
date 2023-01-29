@@ -15671,6 +15671,8 @@ type: Opaque
 apiVersion: v1
 kind: Secret
 metadata:
+  annotations:
+    sealedsecrets.bitnami.com/managed: "true"
   labels:
     app.kubernetes.io/name: argocd-secret
     app.kubernetes.io/part-of: argocd
@@ -16966,7 +16968,7 @@ metadata:
   namespace: argocd
 spec:
   encryptedData:
-    admin.password: AgCM+HxEy23JUgaq1vvzOYpI4dVnK7+vXF0ujp9rom0ez9Sxi00Esn4iCkO03Bo5FXDVMSdxocley+Li4MjvieZO5Jgq11OiFr2Y8AmhmBypuDhGDwl5UfIJdXvIeMVcOCOd5vI0MVGQWaaUL+LgJX9G2Ts2dgE4rrB891HvWx7MXtbcRzqJMrMKQMvYxbqsPSrL26ICLjvSBKJ2TJ99K7ihIIT738fWvjpOl/qkvYbwQIO0pXqn+4/J1oGBOHxmMOGUow3kFySfzftqF1Svwql/BIudUdlmFEmU869znTeBks3mbell//wTQDpunL5bWIoJCXYGq0Lop3O5Qg9xnTu3lZRIYFMDs3Aox7kb9P+YbHusrmdcVb2pTi2ZvSTwKDwXgRWC3zDOq3Kik6qapxPVkWviD8EVWMMCaC/BoDj9ORWtT6IxECNhekELTJUmg++IX+wtAAK99s1pIaeyZKG5fY5k8JsmdJFawEGrAd6TdDsSs7tPgrNUOmUa4t/NkE2TxlXtVEPwdAGF7SEyN+8wtqBw3GXcgfTXmUvf1ghYONGxdTq2L8sPjH6DqZhrhagv0Mgmf/9+isP/xBAO/slgZ3ExaWk3q3KT86YxvAthsTL18c07tkwUKteZAijM5DGdhlaRjm+JTSaLDwwwe8/hgqo5pYNVyzyNvd8AdRm/B5XyHsF79R1Tc1nnpomkJgHm3M/0H6rhs8x5
+    admin.password: AgBMbHDUKZhyPktqNZihRYTkgoS3mbenXGMeoUlUKF2s9+8+jSOkMInZAtLis+2mF/P74VJC5UePOPdwmeo+26YSx+td2EYqmQUbxvAZWdOhyzZ7YwjrnisVZ7XBYix5QavkoSvQvZUMzPKWAzXhDusMh2iVhghwGueVjJx9ZtQ43lxjWCs6DVotAUnh1P1IwVAVdvyTzCyQNH3YxvinDs8sHmHNGQnnC0ss8XtByiT0PxZ7KL/Tk/dQ9U0/QxEMPhDHz5buJxGhtJ0J/EI4BSLkjFoa9K5Ivycs+ohgKRUz01qXpxhhd28Xm8h5ARsytu0dBZdw7I6AecofCjlVRFmPDG1OanGBet9RxDdL2SHWsaAAdOMvMTBvPNhRHnKAvH7yBdiFtQJqRciBbqqKUwaG+Za3UwB8kmIs8frUtX8zmGX4xFxD6oLvQwh+ahuGLodVwa1m1i2kJ1plfgwoxOVHPItmeaC+5Nk9MqUPZZvqlqOtm9OtE1O2elAd4lA2N6CygG72mOu167Gkj+gcCVTz7vnoKtgEfC9MnCCF6BgP5MX8DCOuI3Tt33+Ths7l1HytbChVo8OA0pM3xfw+hqr05TxNu71zqT6R2Jp1/md1x0F3zA2WNbustfcMXX/LABd05sNfyblotRAWw5gkLAGfZs8Pn6hkMff8q754IEGvi5td//pp6hdxk524iYKScoE/vtghrUaE+TM=
   template:
     metadata:
       labels:
