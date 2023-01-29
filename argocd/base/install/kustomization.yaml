@@ -4,10 +4,7 @@ namespace: argocd
 resources:
   - ns.yaml
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.5.9
-  # - install.yaml
-  # - sealed-argocd-secret.yaml
 patches:
-  # - argocd-secret.yaml
   - argocd-cm.yaml
   - argocd-cmd-params-cm.yaml
 patchesStrategicMerge:
