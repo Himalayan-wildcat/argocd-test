@@ -15585,10 +15585,6 @@ subjects:
   namespace: argocd
 ---
 apiVersion: v1
-data:
-  admin.enabled: "true"
-  helm.enabled: "true"
-  kustomize.enabled: "true"
 kind: ConfigMap
 metadata:
   labels:
