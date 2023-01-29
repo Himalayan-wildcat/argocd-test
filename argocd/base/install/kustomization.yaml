@@ -9,3 +9,5 @@ patches:
   # - argocd-secret.yaml
   - argocd-cm.yaml
   - argocd-cmd-params-cm.yaml
+patchesStrategicMerge:
+  - argocd-server.yaml

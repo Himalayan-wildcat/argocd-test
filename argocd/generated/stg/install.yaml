@@ -15585,10 +15585,6 @@ subjects:
   namespace: argocd
 ---
 apiVersion: v1
-data:
-  admin.enabled: "true"
-  helm.enabled: "false"
-  kustomize.enabled: "false"
 kind: ConfigMap
 metadata:
   labels:
@@ -15598,8 +15594,6 @@ metadata:
   namespace: argocd
 ---
 apiVersion: v1
-data:
-  server.insecure: "true"
 kind: ConfigMap
 metadata:
   labels:
@@ -15820,6 +15814,7 @@ spec:
     targetPort: 8080
   selector:
     app.kubernetes.io/name: argocd-server
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
