@@ -15586,7 +15586,7 @@ subjects:
 ---
 apiVersion: v1
 data:
-  admin.enabled: "false"
+  admin.enabled: "true"
   helm.enabled: "false"
   kustomize.enabled: "false"
 kind: ConfigMap
