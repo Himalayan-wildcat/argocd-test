@@ -7,5 +7,5 @@ resources:
   # - sealed-argocd-secret.yaml
 patches:
   # - argocd-secret.yaml
-  # - argocd-cm.yaml
+  - argocd-cm.yaml
   - argocd-cmd-params-cm.yaml

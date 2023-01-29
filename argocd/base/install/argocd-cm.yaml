@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
-  admin.enabled: "true"
-  kustomize.enabled: "true"
-  helm.enabled: "true"
+  admin.enabled: "false"
+  kustomize.enabled: "false"
+  helm.enabled: "false"
