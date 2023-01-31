@@ -1,25 +1,4 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: stg-argocd
-  namespace: argocd
-spec:
-  clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  description: argocd
-  destinations:
-  - namespace: argocd
-    server: '*'
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
-  orphanedResources:
-    warn: true
-  sourceRepos:
-  - https://github.com/Himalayan-wildcat/argocd-test.git
----
-apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   labels:
@@ -30,8 +9,8 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: stg-argocd
-  revisionHistoryLimit: 10
+  project: default
+  revisionHistoryLimit: 1
   source:
     directory:
       recurse: true

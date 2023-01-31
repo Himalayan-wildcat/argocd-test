@@ -4,24 +4,24 @@ resources:
   - ../../../base/app
 
 patches:
-  # project
-  - patch: |-
-      - op: replace
-        path: /metadata/name
-        value: stg-argocd
-    target:
-      group: argoproj.io
-      version: v1alpha1
-      kind: AppProject
+  # # project
+  # - patch: |-
+  #     - op: replace
+  #       path: /metadata/name
+  #       value: stg-argocd
+  #   target:
+  #     group: argoproj.io
+  #     version: v1alpha1
+  #     kind: AppProject
 
-  # application
+  # app for argo
   - patch: |-
       - op: replace
         path: /metadata/name
         value: stg-argocd
-      - op: replace
-        path: /spec/project
-        value: stg-argocd
+      # - op: replace
+      #   path: /spec/project
+      #   value: stg-argocd
       - op: replace
         path: /spec/source/path
         value: argocd/generated/stg

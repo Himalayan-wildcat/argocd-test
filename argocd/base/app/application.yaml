@@ -7,7 +7,7 @@ metadata:
   labels:
     name: argocd
 spec:
-  project: argocd
+  project: default # argocd
   source:
     repoURL: https://github.com/Himalayan-wildcat/argocd-test.git
     targetRevision: HEAD
@@ -35,4 +35,4 @@ spec:
     - ApplyOutOfSyncOnly=true
     - PrunePropagationPolicy=foreground
     - PruneLast=true
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 1
