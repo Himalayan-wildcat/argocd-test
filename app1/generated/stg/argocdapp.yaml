@@ -4,6 +4,7 @@ metadata:
   labels:
     name: app1
   name: stg-app1
+  namespace: argocd
 spec:
   destination:
     namespace: app1
@@ -19,7 +20,7 @@ spec:
     directory:
       recurse: true
     path: app1/generated/stg
-    repoURL: git@github.com:Nextremer/argocd-test.git
+    repoURL: https://github.com/Himalayan-wildcat/argocd-test.git
     targetRevision: HEAD
   syncPolicy:
     automated:
