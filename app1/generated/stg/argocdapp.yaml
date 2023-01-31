@@ -14,6 +14,7 @@ spec:
     jsonPointers:
     - /spec/replicas
     kind: Deployment
+    namespace: app1
   project: default
   revisionHistoryLimit: 10
   source:

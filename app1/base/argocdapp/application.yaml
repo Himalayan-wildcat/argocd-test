@@ -36,6 +36,7 @@ spec:
   ignoreDifferences:
   - group: apps
     kind: Deployment
+    namespace: app1
     jsonPointers:
     - /spec/replicas
   revisionHistoryLimit: 10
