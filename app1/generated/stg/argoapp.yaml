@@ -9,7 +9,9 @@ spec:
     kind: '*'
   description: app1
   destinations:
-  - namespace: '*'
+  - namespace: argocd
+    server: '*'
+  - namespace: app1
     server: '*'
   namespaceResourceWhitelist:
   - group: '*'

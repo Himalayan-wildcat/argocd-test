@@ -7,7 +7,9 @@ spec:
   sourceRepos:
   - git@github.com:Nextremer/argocd-test.git
   destinations:
-  - namespace: "*"
+  - namespace: argocd
+    server: "*"
+  - namespace: app1
     server: "*"
   clusterResourceWhitelist:
   - group: "*"
