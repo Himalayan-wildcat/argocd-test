@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../base/argoapp
+
+patches:
+  # project
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: stg-app1
+    target:
+      group: argoproj.io
+      version: v1alpha1
+      kind: AppProject
+
+  # application
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: stg-app1
+      - op: replace
+        path: /spec/project
+        value: stg-app1
+      - op: replace
+        path: /spec/source/path
+        value: app1/generated/stg
+    target:
+      group: argoproj.io
+      version: v1alpha1
+      kind: Application
