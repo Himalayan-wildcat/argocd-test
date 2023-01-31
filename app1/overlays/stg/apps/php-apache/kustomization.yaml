@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/apps/php-apache
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: stg-php-apache
+    target:
+      kind: ServiceAccount
+      labelSelector: "run=php-apache"
+
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: stg-php-apache
+    target:
+      kind: Service
+      labelSelector: "run=php-apache"
+
+  - patch: |-
+      - op: replace
+        path: /metadata/name
+        value: stg-php-apache
+      - op: replace
+        path: /spec/template/spec/serviceAccountName
+        value: stg-php-apache
+    target:
+      kind: Deployment
+      labelSelector: "run=php-apache"
