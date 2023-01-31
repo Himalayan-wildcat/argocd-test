@@ -10,7 +10,6 @@ kind: Deployment
 metadata:
   name: php-apache
 spec:
-  replicas: 1
   selector:
     matchLabels:
       run: php-apache
@@ -36,6 +35,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: php-apache
 spec:
+  minReplicas: 1
   maxReplicas: 10
   metrics:
   - resource:
@@ -44,7 +44,6 @@ spec:
         averageUtilization: 50
         type: Utilization
     type: Resource
-  minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
