@@ -11,12 +11,13 @@ spec:
   project: hhara
   source:
     repoURL: https://github.com/argoproj/argocd-example-apps.git
-    targetRevision: HEAD 
+    targetRevision: HEAD
     path: helm-guestbook
     helm:
       valuesObject:
         image:
           repository: arm64v8/nginx
+          tag: latest
           pullPolicy: IfNotPresent
     directory:
       recurse: false
