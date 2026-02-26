@@ -10,9 +10,9 @@ metadata:
 spec:
   project: hhara
   source:
-    repoURL: https://github.com/argoproj/argocd-example-apps.git 
+    repoURL: https://github.com/Himalayan-wildcat/argocd-test
     targetRevision: HEAD 
-    path: helm-guestbook
+    path: manifests/nginx
     directory:
       recurse: false
   destination:
@@ -20,4 +20,5 @@ spec:
     namespace: hhara
   syncPolicy:
     automated: 
+      prune: true
       enabled: false
