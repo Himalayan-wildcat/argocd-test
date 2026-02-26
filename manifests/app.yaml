@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chacha
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: chacha
+spec:
+  project: hhara
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps.git 
+    targetRevision: HEAD 
+    path: helm-guestbook
+    directory:
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hhara
+  syncPolicy:
+    automated: 
+      enabled: false
