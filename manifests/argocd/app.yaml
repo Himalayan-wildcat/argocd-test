@@ -17,7 +17,7 @@ spec:
       valuesObject:
         image:
           repository: arm64v8/nginx
-          tag: latest
+          tag: 1-otel
           pullPolicy: IfNotPresent
     directory:
       recurse: false
