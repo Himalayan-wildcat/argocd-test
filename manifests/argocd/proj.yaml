@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: "hhara"
+spec:
+  destinations:
+    - namespace: "hhara"
+      server: "https://kubernetes.default.svc"
+  sourceRepos:
+    - "*"
+  clusterResourceWhitelist:
+    - kind: Namespace
+      group: ''
