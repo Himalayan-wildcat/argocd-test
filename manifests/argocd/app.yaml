@@ -19,8 +19,6 @@ spec:
           repository: arm64v8/nginx
           tag: 1-otel
           pullPolicy: IfNotPresent
-    directory:
-      recurse: false
   destination:
     server: https://kubernetes.default.svc
     namespace: hhara
