@@ -14,7 +14,7 @@ kind: Rollout
 metadata:
   name: canary-rollouts
 spec:
-  replicas: 1
+  replicas: 5
   revisionHistoryLimit: 1
   selector:
     matchLabels:
