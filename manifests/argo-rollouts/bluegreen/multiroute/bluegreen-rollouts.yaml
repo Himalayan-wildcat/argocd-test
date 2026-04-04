@@ -8,6 +8,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: Service
@@ -19,6 +21,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -55,14 +59,23 @@ metadata:
   name: bluegreen-active
 spec:
   parentRefs:
-    - name: cilium-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway
       namespace: kube-system
   hostnames:
     - bluegreen-multiroutes.localhost
   rules:
-    - backendRefs:
-        - name: bluegreen-active
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - group: ""
+          kind: Service
+          name: bluegreen-active
           port: 80
+          weight: 1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -70,11 +83,20 @@ metadata:
   name: bluegreen-preview
 spec:
   parentRefs:
-    - name: cilium-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway
       namespace: kube-system
   hostnames:
     - bluegreen-multiroutes-preview.localhost
   rules:
-    - backendRefs:
-        - name: bluegreen-preview
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - group: ""
+          kind: Service
+          name: bluegreen-preview
           port: 80
+          weight: 1

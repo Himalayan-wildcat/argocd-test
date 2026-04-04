@@ -14,6 +14,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: default
+  ignoreDifferences:
+    - group: ""
+      kind: Service
+      jsonPointers:
+        - /spec/selector/rollouts-pod-template-hash
   syncPolicy:
     automated:
       prune: true

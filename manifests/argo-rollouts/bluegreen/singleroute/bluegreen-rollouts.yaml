@@ -8,6 +8,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: Service
@@ -19,6 +21,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
@@ -55,7 +59,9 @@ metadata:
   name: bluegreen-singleroute
 spec:
   parentRefs:
-    - name: cilium-gateway
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway
       namespace: kube-system
   hostnames:
     - bluegreen-singleroute.localhost
@@ -65,12 +71,18 @@ spec:
             type: PathPrefix
             value: /preview
       backendRefs:
-        - name: bluegreen-singleroute-preview
+        - group: ""
+          kind: Service
+          name: bluegreen-singleroute-preview
           port: 80
+          weight: 1
     - matches:
         - path:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: bluegreen-singleroute-active
+        - group: ""
+          kind: Service
+          name: bluegreen-singleroute-active
           port: 80
+          weight: 1
