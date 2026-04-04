@@ -35,6 +35,7 @@ spec:
     canary:
       scaleDownDelaySeconds: 86400 # 1 day
       steps:
+        - setWeight: 10
         - pause: {}
         - setWeight: 25
         - pause: {}
