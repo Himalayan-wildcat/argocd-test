@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollouts-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rollouts-demo
+  template:
+    metadata:
+      labels:
+        app: rollouts-demo
+    spec:
+      containers:
+        - name: rollouts-demo
+          image: rollouts-demo:blue
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
