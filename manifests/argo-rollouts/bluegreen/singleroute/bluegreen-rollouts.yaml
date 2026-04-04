@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen-singleroute-active
+spec:
+  selector:
+    app: bluegreen-singleroute-rollouts
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bluegreen-singleroute-preview
+spec:
+  selector:
+    app: bluegreen-singleroute-rollouts
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: bluegreen-singleroute-rollouts
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: bluegreen-singleroute-rollouts
+  template:
+    metadata:
+      labels:
+        app: bluegreen-singleroute-rollouts
+    spec:
+      containers:
+        - name: bluegreen-singleroute-rollouts
+          image: rollouts-demo:blue
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+  strategy:
+    blueGreen:
+      activeService: bluegreen-singleroute-active
+      previewService: bluegreen-singleroute-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 86400
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: bluegreen-singleroute
+spec:
+  parentRefs:
+    - name: cilium-gateway
+      namespace: kube-system
+  hostnames:
+    - bluegreen2.localhost
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /preview
+      backendRefs:
+        - name: bluegreen-singleroute-preview
+          port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: bluegreen-singleroute-active
+          port: 80
