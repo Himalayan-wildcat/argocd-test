@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: canary-rollouts
-          image: rollouts-demo:blue
+          image: rollouts-demo:yellow
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
