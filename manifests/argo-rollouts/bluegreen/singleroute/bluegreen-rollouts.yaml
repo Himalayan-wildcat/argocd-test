@@ -58,7 +58,7 @@ spec:
     - name: cilium-gateway
       namespace: kube-system
   hostnames:
-    - bluegreen2.localhost
+    - bluegreen-singleroute.localhost
   rules:
     - matches:
         - path:

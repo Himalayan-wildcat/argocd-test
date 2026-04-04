@@ -47,7 +47,7 @@ spec:
       activeService: bluegreen-active
       previewService: bluegreen-preview
       autoPromotionEnabled: false
-      scaleDownDelaySeconds: 86400  # 1 day
+      scaleDownDelaySeconds: 86400 # 1 day
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -58,7 +58,7 @@ spec:
     - name: cilium-gateway
       namespace: kube-system
   hostnames:
-    - bluegreen.localhost
+    - bluegreen-multiroutes.localhost
   rules:
     - backendRefs:
         - name: bluegreen-active
@@ -73,7 +73,7 @@ spec:
     - name: cilium-gateway
       namespace: kube-system
   hostnames:
-    - bluegreen-preview.localhost
+    - bluegreen-multiroutes-preview.localhost
   rules:
     - backendRefs:
         - name: bluegreen-preview
