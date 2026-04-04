@@ -33,7 +33,6 @@ spec:
               protocol: TCP
   strategy:
     canary:
-      scaleDownDelaySeconds: 86400 # 1 day
       steps:
         - setWeight: 10
         - pause: {}
