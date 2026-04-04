@@ -62,7 +62,7 @@ spec:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: cilium-gateway
-      namespace: kube-system
+      namespace: default
   hostnames:
     - bluegreen-singleroute.localhost
   rules:
