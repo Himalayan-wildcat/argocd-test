@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bluegreen-active
+  name: bluegreen-multiroutes-active
 spec:
   selector:
-    app: bluegreen-rollouts
+    app: bluegreen-multiroutes-rollouts
   ports:
     - port: 80
       targetPort: 8080
@@ -12,10 +12,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bluegreen-preview
+  name: bluegreen-multiroutes-preview
 spec:
   selector:
-    app: bluegreen-rollouts
+    app: bluegreen-multiroutes-rollouts
   ports:
     - port: 80
       targetPort: 8080
@@ -23,20 +23,20 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: bluegreen-rollouts
+  name: bluegreen-multiroutes-rollouts
 spec:
   replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: bluegreen-rollouts
+      app: bluegreen-multiroutes-rollouts
   template:
     metadata:
       labels:
-        app: bluegreen-rollouts
+        app: bluegreen-multiroutes-rollouts
     spec:
       containers:
-        - name: bluegreen-rollouts
+        - name: bluegreen-multiroutes-rollouts
           image: rollouts-demo:yellow
           imagePullPolicy: Never
           ports:
@@ -44,8 +44,8 @@ spec:
               protocol: TCP
   strategy:
     blueGreen:
-      activeService: bluegreen-active
-      previewService: bluegreen-preview
+      activeService: bluegreen-multiroutes-active
+      previewService: bluegreen-multiroutes-preview
       autoPromotionEnabled: false
       scaleDownDelaySeconds: 86400 # 1 day
 ---
