@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rollouts-demo
+  name: canary-demo
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Himalayan-wildcat/argocd-test
     targetRevision: main
-    path: manifests/argo-rollouts/workloads
+    path: manifests/argo-rollouts/canary
   destination:
     server: https://kubernetes.default.svc
     namespace: default
