@@ -8,6 +8,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: Service
@@ -19,6 +21,8 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
