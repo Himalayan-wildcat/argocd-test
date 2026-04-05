@@ -51,11 +51,11 @@ spec:
       activeService: bluegreen-multiroutes-active
       previewService: bluegreen-multiroutes-preview
       autoPromotionEnabled: false
-      # scaleDownDelaySeconds: 86400 # 1 day
-      # NOTE: scaleDownDelaySeconds is commented out for testing purposes.
+      # NOTE:
       # When enabled, Argo Rollouts treats re-deployment of a version still within
       # the delay window as a warm rollback and skips the preview pause, making it
       # impossible to test autoPromotionEnabled: false behavior properly.
+      scaleDownDelaySeconds: 86400
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
