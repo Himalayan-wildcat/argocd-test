@@ -75,6 +75,21 @@ spec:
         - path:
             type: PathPrefix
             value: /preview
+      filters:
+        # Rewrite /preview → / before forwarding to the preview pod.
+        # Required because the application does not serve a /preview route —
+        # without this, the gateway forwards the path as-is and the app returns 404.
+        #
+        # NOTE: this is NOT recommended for real-world API use. The path rewrite
+        # introduces invisible indirection: the app receives / but the client sent
+        # /preview. This causes issues with relative redirects, self-referencing
+        # URLs in responses, and confusing logs/traces. For production APIs,
+        # use Pattern 2 (multiroute) with a dedicated preview hostname instead.
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
       backendRefs:
         - group: ""
           kind: Service
