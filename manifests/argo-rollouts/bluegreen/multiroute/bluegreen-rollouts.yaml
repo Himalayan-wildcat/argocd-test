@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: bluegreen-multiroutes-rollouts
-          image: rollouts-demo:yellow
+          image: rollouts-demo:purple
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
