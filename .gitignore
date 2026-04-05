@@ -1,0 +1,3 @@
+# Directories prefixed with "__" are for local development use.
+# Developers can use them freely without affecting version control.
+__*/
