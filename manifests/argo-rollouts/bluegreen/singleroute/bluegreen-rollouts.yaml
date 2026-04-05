@@ -75,7 +75,7 @@ spec:
         - path:
             type: PathPrefix
             value: /preview
-      Backendrefs:
+      backendRefs:
         - group: ""
           kind: Service
           name: bluegreen-singleroute-preview
