@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: bluegreen-singleroute-rollout
-          image: rollouts-demo:blue
+          image: rollouts-demo:orange
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
