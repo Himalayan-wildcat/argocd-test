@@ -17,6 +17,8 @@ spec:
   # Argo Rollouts dynamically injects `rollouts-pod-template-hash` into the
   # Service selector to route traffic to specific pods (active vs preview).
   # Without this, ArgoCD would show perpetual out-of-sync on the Services.
+  # NOTE: ignoreDifferences is required regardless of apply method (client-side
+  # or server-side) to prevent ArgoCD from showing the app as out-of-sync.
   ignoreDifferences:
     - group: ""
       kind: Service
@@ -35,4 +37,6 @@ spec:
       # selector during syncs. Without this, every Git push would temporarily
       # break active/preview traffic separation until Argo Rollouts re-injects
       # the hash. Works in tandem with ignoreDifferences above.
+      # NOTE: only required with ServerSideApply. With client-side apply,
+      # 3-way merge naturally preserves fields not in the manifest.
       - RespectIgnoreDifferences=true
