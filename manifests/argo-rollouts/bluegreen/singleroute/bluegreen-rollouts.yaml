@@ -4,7 +4,7 @@ metadata:
   name: bluegreen-singleroute-active
 spec:
   selector:
-    app: bluegreen-singleroute-rollouts
+    app: bluegreen-singleroute-rollout
   ports:
     - port: 80
       targetPort: 8080
@@ -17,7 +17,7 @@ metadata:
   name: bluegreen-singleroute-preview
 spec:
   selector:
-    app: bluegreen-singleroute-rollouts
+    app: bluegreen-singleroute-rollout
   ports:
     - port: 80
       targetPort: 8080
@@ -33,14 +33,14 @@ spec:
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: bluegreen-singleroute-rollouts
+      app: bluegreen-singleroute-rollout
   template:
     metadata:
       labels:
-        app: bluegreen-singleroute-rollouts
+        app: bluegreen-singleroute-rollout
     spec:
       containers:
-        - name: bluegreen-singleroute-rollouts
+        - name: bluegreen-singleroute-rollout
           image: rollouts-demo:blue
           imagePullPolicy: Never
           ports:
