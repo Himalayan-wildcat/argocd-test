@@ -27,7 +27,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: bluegreen-singleroute-rollouts
+  name: bluegreen-singleroute-rollout
 spec:
   replicas: 1
   revisionHistoryLimit: 1
@@ -51,7 +51,12 @@ spec:
       activeService: bluegreen-singleroute-active
       previewService: bluegreen-singleroute-preview
       autoPromotionEnabled: false
+      # NOTE:
+      # When enabled, Argo Rollouts treats re-deployment of a version still within
+      # the delay window as a warm rollback and skips the preview pause, making it
+      # impossible to test autoPromotionEnabled: false behavior properly.
       scaleDownDelaySeconds: 86400
+      scaleDownDelayRevisionLimit: 1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -70,7 +75,7 @@ spec:
         - path:
             type: PathPrefix
             value: /preview
-      backendRefs:
+      Backendrefs:
         - group: ""
           kind: Service
           name: bluegreen-singleroute-preview

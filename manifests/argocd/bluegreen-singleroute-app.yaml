@@ -14,6 +14,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: default
+  # Argo Rollouts dynamically injects `rollouts-pod-template-hash` into the
+  # Service selector to route traffic to specific pods (active vs preview).
+  # Without this, ArgoCD would show perpetual out-of-sync on the Services.
+  # NOTE: ignoreDifferences is required regardless of apply method (client-side
+  # or server-side) to prevent ArgoCD from showing the app as out-of-sync.
   ignoreDifferences:
     - group: ""
       kind: Service
@@ -22,6 +27,16 @@ spec:
   syncPolicy:
     automated:
       prune: true
+      # selfHeal is disabled to allow manual kubectl intervention
+      # (e.g. abort, promote, undo) without ArgoCD immediately overwriting it.
       selfHeal: false
     syncOptions:
+      # Use server-side apply for proper field ownership management.
       - ServerSideApply=true
+      # Ensures ArgoCD does not overwrite the `rollouts-pod-template-hash`
+      # selector during syncs. Without this, every Git push would temporarily
+      # break active/preview traffic separation until Argo Rollouts re-injects
+      # the hash. Works in tandem with ignoreDifferences above.
+      # NOTE: only required with ServerSideApply. With client-side apply,
+      # 3-way merge naturally preserves fields not in the manifest.
+      - RespectIgnoreDifferences=true
